@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngryMailer", "AngryMailer\AngryMailer.csproj", "{F2F0F1F1-C920-464A-8C8B-7AB4FE47831A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2F0F1F1-C920-464A-8C8B-7AB4FE47831A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2F0F1F1-C920-464A-8C8B-7AB4FE47831A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2F0F1F1-C920-464A-8C8B-7AB4FE47831A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2F0F1F1-C920-464A-8C8B-7AB4FE47831A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A1BE5A14-72CA-4B99-97B0-CC960B514EFD}
+	EndGlobalSection
+EndGlobal
