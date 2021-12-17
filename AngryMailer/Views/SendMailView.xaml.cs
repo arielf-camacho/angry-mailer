@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using AngryMailer.ViewModels;
+using System.Windows;
 
 namespace AngryMailer.Views
 {
