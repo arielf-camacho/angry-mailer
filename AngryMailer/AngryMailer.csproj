@@ -7,4 +7,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Cquential.Microsoft.Practices.Unity" Version="2.0.414" />
+  </ItemGroup>
+
 </Project>

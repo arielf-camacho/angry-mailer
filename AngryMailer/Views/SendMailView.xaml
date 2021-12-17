@@ -1,11 +1,11 @@
-﻿<Window x:Class="AngryMailer.MainWindow"
+﻿<Window x:Class="AngryMailer.Views.SendMailView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AngryMailer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Angry Mailer" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -20,7 +20,7 @@
         <Button Grid.Column="2" Content="Send" HorizontalAlignment="Stretch" Margin="4,8,8,4" VerticalAlignment="Stretch" 
                 Grid.RowSpan="2"/>
         <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,8,4,4" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,8,4,4" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,4,4" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
         <Label Content="To:" HorizontalAlignment="Left" Margin="8,8,4,4" VerticalAlignment="Top" Padding="0,0,0,0"/>
         <Label Content="Subject:" HorizontalAlignment="Left" Margin="8,4,4,4" Grid.Row="1" VerticalAlignment="Top" Padding="0,0,0,0"/>
         <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Margin="4,4,8,8" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Stretch" Grid.ColumnSpan="2"/>
