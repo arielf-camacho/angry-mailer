@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngryMailer", "AngryMailer\AngryMailer.csproj", "{F2F0F1F1-C920-464A-8C8B-7AB4FE47831A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngryMailer", "AngryMailer\AngryMailer.csproj", "{F2F0F1F1-C920-464A-8C8B-7AB4FE47831A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngryMailer.Tests", "AngryMailer.Tests\AngryMailer.Tests.csproj", "{868E7D98-8C4E-4CAD-9FA4-954B850C5946}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F2F0F1F1-C920-464A-8C8B-7AB4FE47831A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2F0F1F1-C920-464A-8C8B-7AB4FE47831A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2F0F1F1-C920-464A-8C8B-7AB4FE47831A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{868E7D98-8C4E-4CAD-9FA4-954B850C5946}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{868E7D98-8C4E-4CAD-9FA4-954B850C5946}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{868E7D98-8C4E-4CAD-9FA4-954B850C5946}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{868E7D98-8C4E-4CAD-9FA4-954B850C5946}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
