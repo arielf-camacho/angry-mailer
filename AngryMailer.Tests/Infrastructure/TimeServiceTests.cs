@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using AngryMailer.Infrastructure;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading;
 
@@ -7,7 +8,7 @@ namespace AngryMailer.Tests.Infrastructure.Time
     [TestClass]
     public class TimeServiceTests
     {
-        private TimeService _subject;
+        private TimeService? _subject;
 
 
         [TestInitialize]
@@ -21,7 +22,7 @@ namespace AngryMailer.Tests.Infrastructure.Time
         public void Elapsed_ReturnsTimeElapsedBetweenNowAndLastMark()
         {
             // Mark now as the time to count how long has elapsed ahead in the test
-            _subject.Mark();
+            _subject!.Mark();
 
             // Wait some time
             Thread.Sleep(1000);
