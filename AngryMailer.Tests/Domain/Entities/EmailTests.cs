@@ -61,13 +61,14 @@ namespace AngryMailer.Tests.Domain.Entities
         public void ToString_ReturnsTheWholeComposedEmailContent()
         {
             // Given
-            var emailBuilder = new StringBuilder($"To: {_subject!.ToAddress}");
+            var emailBuilder = new StringBuilder();
+            emailBuilder.AppendLine($"To: {_subject!.ToAddress}");
             emailBuilder.AppendLine($"Subject: {_subject!.Subject}");
-            emailBuilder.AppendLine(_subject!.Content);
+            emailBuilder.AppendLine($"Content: {_subject!.Content}");
             var expectedEmailContent = emailBuilder.ToString();
 
             // When
-            var actualEmailContent = emailBuilder.ToString();
+            var actualEmailContent = _subject.ToString();
 
             // Then
             Assert.AreEqual(expectedEmailContent, actualEmailContent);

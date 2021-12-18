@@ -31,7 +31,7 @@ namespace AngryMailer.Domain.Entities
 
             emailBuilder.AppendLine($"To: {ToAddress}");
             emailBuilder.AppendLine($"Subject: {Subject}");
-            emailBuilder.AppendLine(Content);
+            emailBuilder.AppendLine($"Content: {Content}");
 
             return emailBuilder.ToString();
         }
