@@ -26,19 +26,19 @@ namespace AngryMailer.ViewModels
         public SendMailViewModel(IMailService mailSender)
         {
             _mailSender = mailSender;
-            SendCommand = new Command(ExecuteSendCommand);
+            SendEmailCommand = new Command(ExecuteSendMailCommand, CanSendEmailCommand);
         }
 
 
         /// <summary>
         ///     Gets the command used to Send emails.
         /// </summary>
-        public ICommand SendCommand { get; }
+        public ICommand SendEmailCommand { get; }
 
         /// <summary>
         ///     Gets or sets the email address to send the email to.
         /// </summary>
-        public string ToEmail
+        public string ToAddress
         {
             get => _to;
             set
@@ -81,11 +81,20 @@ namespace AngryMailer.ViewModels
         }
 
 
-        private void ExecuteSendCommand(object? obj)
+        private bool CanSendEmailCommand(object? arg)
         {
-            var email = new Email(ToEmail, Subject, Content);
+            var email = BuildEmail();
+
+            return email.IsValid;
+        }
+
+        private void ExecuteSendMailCommand(object? obj)
+        {
+            var email = BuildEmail();
 
             _mailSender.Send(email);
         }
+
+        private Email BuildEmail() => new(ToAddress, Subject, Content);
     }
 }
