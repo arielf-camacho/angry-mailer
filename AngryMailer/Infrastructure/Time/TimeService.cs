@@ -7,7 +7,6 @@ namespace AngryMailer.Infrastructure.Time
     /// </summary>
     public class TimeService : ITimeService
     {
-        private DateTime _currentTime = DateTime.Now;
         private DateTime _lastMarkTime = DateTime.Now;
 
 
@@ -16,13 +15,7 @@ namespace AngryMailer.Infrastructure.Time
         {
             get
             {
-                lock (this)
-                {
-                    var elapsed = DateTime.Now - _lastMarkTime;
-                    _lastMarkTime = _currentTime;
-
-                    return elapsed;
-                }
+                lock (this) return DateTime.Now - _lastMarkTime;
             }
         }
 
@@ -32,7 +25,7 @@ namespace AngryMailer.Infrastructure.Time
         {
             lock (this)
             {
-                _currentTime = DateTime.Now;
+                _lastMarkTime = DateTime.Now;
             }
         }
     }
