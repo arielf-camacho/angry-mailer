@@ -22,6 +22,21 @@ namespace AngryMailer.Tests.ViewModels
 
 
         [TestMethod]
+        public void Content_IfChanged_NotifiesItDidChange()
+        {
+            // Given
+            var newValue = $"Value: #{_random.Next(10)}";
+            var watcher = new PropertyChangeWatcher(_subject!, nameof(SendMailViewModel.Content));
+
+            // When
+            _subject!.Content = newValue;
+
+            // When
+            Assert.AreEqual(newValue, _subject!.Content);
+            Assert.IsTrue(watcher.NotifiedChange);
+        }
+
+        [TestMethod]
         public void SendCommand_CanAlwaysExecute()
         {
             // When
@@ -29,21 +44,6 @@ namespace AngryMailer.Tests.ViewModels
 
             // Then
             Assert.IsTrue(canExecute);
-        }
-
-        [TestMethod]
-        public void To_IfChanged_NotifiesItDidChange()
-        {
-            // Given
-            var newValue = $"Value: #{_random.Next(10)}";
-            var watcher = new PropertyChangeWatcher(_subject!, nameof(SendMailViewModel.ToEmail));
-
-            // When
-            _subject!.ToEmail = newValue;
-
-            // When
-            Assert.AreEqual(newValue, _subject!.ToEmail);
-            Assert.IsTrue(watcher.NotifiedChange);
         }
 
         [TestMethod]
@@ -62,17 +62,17 @@ namespace AngryMailer.Tests.ViewModels
         }
 
         [TestMethod]
-        public void Content_IfChanged_NotifiesItDidChange()
+        public void To_IfChanged_NotifiesItDidChange()
         {
             // Given
             var newValue = $"Value: #{_random.Next(10)}";
-            var watcher = new PropertyChangeWatcher(_subject!, nameof(SendMailViewModel.Content));
+            var watcher = new PropertyChangeWatcher(_subject!, nameof(SendMailViewModel.ToEmail));
 
             // When
-            _subject!.Content = newValue;
+            _subject!.ToEmail = newValue;
 
             // When
-            Assert.AreEqual(newValue, _subject!.Content);
+            Assert.AreEqual(newValue, _subject!.ToEmail);
             Assert.IsTrue(watcher.NotifiedChange);
         }
     }
