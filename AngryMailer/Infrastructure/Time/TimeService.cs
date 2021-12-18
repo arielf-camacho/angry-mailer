@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace AngryMailer.Infrastructure.Time
 {
@@ -21,7 +20,7 @@ namespace AngryMailer.Infrastructure.Time
                 {
                     var elapsed = DateTime.Now - _lastMarkTime;
                     _lastMarkTime = _currentTime;
-                    
+
                     return elapsed;
                 }
             }

@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using AngryMailer.ViewModels;
+﻿using AngryMailer.ViewModels;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AngryMailer.Tests.ViewModels
 {
@@ -27,7 +27,7 @@ namespace AngryMailer.Tests.ViewModels
         {
             private string? _name;
 
-            public string? Name  
+            public string? Name
             {
                 get => _name;
                 set

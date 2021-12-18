@@ -53,14 +53,14 @@ namespace AngryMailer.Tests.ViewModels.Commands
         {
             // Given
             _email = _email with { ToAddress = string.Empty };
-            
+
             // When
             var canExecute = _subject!.CanExecute(_email);
 
             // Then
             Assert.IsFalse(canExecute);
         }
-        
+
         [TestMethod]
         public void CanExecute_UserIsAngry_ReturnsFalse()
         {

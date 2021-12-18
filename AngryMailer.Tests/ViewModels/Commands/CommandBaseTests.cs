@@ -19,7 +19,7 @@ namespace AngryMailer.Tests.ViewModels
             Assert.IsTrue(canExecute);
         }
 
-        
+
         private class CommandStub : CommandBase
         {
             public override void Execute(object? parameter)

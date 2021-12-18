@@ -1,12 +1,12 @@
 ﻿using AngryMailer.Domain;
+using AngryMailer.Domain.Entities;
+using AngryMailer.Domain.Services;
 using AngryMailer.Tests.Utils;
 using AngryMailer.ViewModels;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using NSubstitute;
-using AngryMailer.Domain.Entities;
 using AngryMailer.ViewModels.Commands;
-using AngryMailer.Domain.Services;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
+using System;
 
 namespace AngryMailer.Tests.ViewModels
 {
@@ -30,7 +30,7 @@ namespace AngryMailer.Tests.ViewModels
             _sendMailCommand = new SendMailCommand(Substitute.For<IMailService>(), _angerDetectionService);
 
             _email = new Email("some@mail.com", "Hello", "Hi friend");
-            
+
             _subject = new SendMailViewModel(_sendMailCommand, _angerDetectionService)
             {
                 ToAddress = _email.ToAddress,
