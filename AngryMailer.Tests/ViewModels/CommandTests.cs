@@ -40,21 +40,21 @@ namespace AngryMailer.Tests.ViewModels
             // Given
             var argument = Environment.TickCount;
             
-            bool invoked = false;
+            bool isOdd = false;
 
             void Method(object? parameter) 
             {
-                if (parameter is int p && p % 2 == 0) invoked = true;
+                if (parameter is int p) isOdd = p % 2 == 0;
             }
             
-            var subject = new Command(o => { }, o => true);
+            var subject = new Command(Method, o => true);
 
             // When
             subject.Execute(argument);
 
             // Then
             var expectedResult = argument % 2 == 0;
-            Assert.AreEqual(expectedResult, invoked);
+            Assert.AreEqual(expectedResult, isOdd);
         }
     }
 }
