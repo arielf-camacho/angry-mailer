@@ -1,7 +1,5 @@
-﻿using AngryMailer.Domain;
-using AngryMailer.Domain.Services;
-using AngryMailer.Infrastructure.Data;
-using AngryMailer.Infrastructure.Time;
+﻿using AngryMailer.Domain.Services;
+using AngryMailer.Infrastructure;
 using AngryMailer.ViewModels;
 using AngryMailer.ViewModels.Commands;
 using Microsoft.Practices.Unity;
@@ -52,8 +50,9 @@ namespace AngryMailer
             var timeService = new TimeService();
             Container.RegisterInstance<ITimeService>(timeService);
             Container.RegisterInstance<IAngerDetectionService>(new AngerDetectionService(timeService));
+            Container.RegisterInstance<IMessageService>(new MessageService());
 
-            Container.RegisterType<IMailService, MailService>();
+            Container.RegisterType<IMailService, FakeMailService>();
             Container.RegisterType<SendMailCommand>();
             Container.RegisterType<SendMailViewModel>();
         }
