@@ -1,5 +1,4 @@
-﻿using AngryMailer.Domain;
-using AngryMailer.Domain.Entities;
+﻿using AngryMailer.Domain.Entities;
 using AngryMailer.Domain.Services;
 using AngryMailer.ViewModels.Commands;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,8 +11,9 @@ namespace AngryMailer.Tests.ViewModels.Commands
     {
         private Email _email = new("person@mail.com", "Hey!", "Hope you are OK");
 
-        private IAngerDetectionService _angerDetectionService;
-        private IMailService _mailService;
+        private IAngerDetectionService? _angerDetectionService;
+        private IMailService? _mailService;
+        private IMessageService? _messageService;
 
         private SendMailCommand? _subject;
 
@@ -23,8 +23,9 @@ namespace AngryMailer.Tests.ViewModels.Commands
         {
             _angerDetectionService = Substitute.For<IAngerDetectionService>();
             _mailService = Substitute.For<IMailService>();
+            _messageService = Substitute.For<IMessageService>();
 
-            _subject = new SendMailCommand(_mailService, _angerDetectionService);
+            _subject = new SendMailCommand(_angerDetectionService, _mailService, _messageService);
         }
 
 
@@ -62,19 +63,6 @@ namespace AngryMailer.Tests.ViewModels.Commands
         }
 
         [TestMethod]
-        public void CanExecute_UserIsAngry_ReturnsFalse()
-        {
-            // Given
-            _angerDetectionService.IsAngry.Returns(true);
-
-            // When
-            var canExecute = _subject!.CanExecute(_email);
-
-            // Then
-            Assert.IsFalse(canExecute);
-        }
-
-        [TestMethod]
         public void CanExecute_EmailDataIsValid_ReturnsTrue()
         {
             // When
@@ -91,7 +79,21 @@ namespace AngryMailer.Tests.ViewModels.Commands
             _subject!.Execute(null);
 
             // Then
-            _mailService.Received(0).Send(Arg.Any<Email>());
+            _mailService!.Received(0).Send(Arg.Any<Email>());
+        }
+
+        [TestMethod]
+        public void Execute_UserIsAny_SendsNothingAndShowSuggestionToSendItLater()
+        {
+            // Given
+            _angerDetectionService!.IsUserAngry.Returns(true);
+
+            // When
+            _subject!.Execute(null);
+
+            // Then
+            _mailService!.Received(0).Send(Arg.Any<Email>());
+            _messageService!.Received().ShowMessage("You in anger state. Please, try sending it again later when you are calmed");
         }
 
         [TestMethod]
@@ -101,7 +103,7 @@ namespace AngryMailer.Tests.ViewModels.Commands
             _subject!.Execute(_email);
 
             // Then
-            _mailService.Received().Send(_email);
+            _mailService!.Received().Send(_email);
         }
     }
 }
