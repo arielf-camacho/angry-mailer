@@ -15,7 +15,7 @@ namespace AngryMailer.Tests.ViewModels
     {
         private static readonly Random _random = new(Environment.TickCount);
 
-        private IMailService _mailService;
+        private IMailService? _mailService;
 
         private SendMailViewModel? _subject;
 
@@ -45,13 +45,16 @@ namespace AngryMailer.Tests.ViewModels
         }
 
         [TestMethod]
-        public void SendCommand_CanAlwaysExecute()
+        public void SendCommand_EmailIsNotValid_CannotBeExecuted()
         {
+            // Given
+            _subject!.Subject = "Some subject";
+
             // When
-            var canExecute = _subject!.SendCommand.CanExecute(null);
+            var canExecute = _subject!.SendEmailCommand.CanExecute(null);
 
             // Then
-            Assert.IsTrue(canExecute);
+            Assert.IsFalse(canExecute);
         }
 
         [TestMethod]
@@ -66,17 +69,20 @@ namespace AngryMailer.Tests.ViewModels
             contentBuilder.AppendLine("James");
             var content = contentBuilder.ToString();
 
-            _subject!.ToEmail = email;
+            _subject!.ToAddress = email;
             _subject!.Subject = emailSubject;
             _subject!.Content = content;
 
             // When
-            _subject!.SendCommand.Execute(null);
+            _subject!.SendEmailCommand.Execute(null);
 
             // Then
-            _mailService
+            _mailService!
                 .Received()
-                .Send(Arg.Is<Email>(email => email.Content == content && email.ToEmail == email.ToEmail && email.Subject == emailSubject));
+                .Send(Arg.Is<Email>(email =>
+                email.Content == content &&
+                email.ToAddress == email.ToAddress &&
+                email.Subject == emailSubject));
         }
 
         [TestMethod]
@@ -99,13 +105,13 @@ namespace AngryMailer.Tests.ViewModels
         {
             // Given
             var newValue = $"Value: #{_random.Next(10)}";
-            var watcher = new PropertyChangeWatcher(_subject!, nameof(SendMailViewModel.ToEmail));
+            var watcher = new PropertyChangeWatcher(_subject!, nameof(SendMailViewModel.ToAddress));
 
             // When
-            _subject!.ToEmail = newValue;
+            _subject!.ToAddress = newValue;
 
             // When
-            Assert.AreEqual(newValue, _subject!.ToEmail);
+            Assert.AreEqual(newValue, _subject!.ToAddress);
             Assert.IsTrue(watcher.NotifiedChange);
         }
     }
