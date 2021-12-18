@@ -83,7 +83,7 @@ namespace AngryMailer.Domain.Entities
                 return $"'{nameof(ToAddress)}' field must not be null or empty";
             }
 
-            if (!Regex.IsMatch(ToAddress, @"[\w\d]+(\.\-[\d\w]+)*\@[\w\d]+([\d\w\.\-]+)*$"))
+            if (!Regex.IsMatch(ToAddress, @"^\w+([\-\.][\w]+)*\@\w+([\-\.][\w]+)*$"))
             {
                 return $"'{nameof(ToAddress)} must be a valid email address";
             }
