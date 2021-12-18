@@ -1,5 +1,4 @@
-﻿using AngryMailer.Domain;
-using AngryMailer.Domain.Entities;
+﻿using AngryMailer.Domain.Entities;
 using AngryMailer.Domain.Services;
 using AngryMailer.Tests.Utils;
 using AngryMailer.ViewModels;
@@ -15,7 +14,7 @@ namespace AngryMailer.Tests.ViewModels
     {
         private static readonly Random _random = new(Environment.TickCount);
 
-        private IAngerDetectionService _angerDetectionService;
+        private IAngerDetectionService? _angerDetectionService;
 
         private Email? _email;
         private SendMailCommand? _sendMailCommand;
@@ -27,7 +26,8 @@ namespace AngryMailer.Tests.ViewModels
         public void Initialize()
         {
             _angerDetectionService = Substitute.For<IAngerDetectionService>();
-            _sendMailCommand = new SendMailCommand(Substitute.For<IMailService>(), _angerDetectionService);
+
+            _sendMailCommand = new SendMailCommand(_angerDetectionService, Substitute.For<IMailService>(), Substitute.For<IMessageService>());
 
             _email = new Email("some@mail.com", "Hello", "Hi friend");
 
@@ -55,7 +55,7 @@ namespace AngryMailer.Tests.ViewModels
             Assert.IsTrue(watcher.NotifiedChange);
             Assert.IsTrue(emailWatcher.NotifiedChange);
             Assert.AreEqual(newValue, _subject!.Content);
-            _angerDetectionService.Received().CountStroke();
+            _angerDetectionService!.Received().CountStroke();
         }
 
         [TestMethod]
@@ -132,7 +132,7 @@ namespace AngryMailer.Tests.ViewModels
             Assert.IsTrue(watcher.NotifiedChange);
             Assert.IsTrue(emailWatcher.NotifiedChange);
             Assert.AreEqual(newValue, _subject!.Subject);
-            _angerDetectionService.Received().CountStroke();
+            _angerDetectionService!.Received().CountStroke();
         }
 
         [TestMethod]
@@ -150,7 +150,7 @@ namespace AngryMailer.Tests.ViewModels
             Assert.IsTrue(watcher.NotifiedChange);
             Assert.IsTrue(emailWatcher.NotifiedChange);
             Assert.AreEqual(newValue, _subject!.ToAddress);
-            _angerDetectionService.Received().CountStroke();
+            _angerDetectionService!.Received().CountStroke();
         }
     }
 }
