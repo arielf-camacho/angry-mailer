@@ -1,8 +1,6 @@
-﻿using AngryMailer.Domain.Services;
-using AngryMailer.Infrastructure.Time;
-using System;
+﻿using System;
 
-namespace AngryMailer.Infrastructure.Data
+namespace AngryMailer.Domain.Services
 {
     /// <summary>
     ///     Default implementation of <see cref="IAngerDetectionService"/> interface. See that interface's docs for 

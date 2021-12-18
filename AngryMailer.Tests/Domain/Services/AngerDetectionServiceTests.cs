@@ -1,10 +1,9 @@
-﻿using AngryMailer.Infrastructure.Data;
-using AngryMailer.Infrastructure.Time;
+﻿using AngryMailer.Domain.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System;
 
-namespace AngryMailer.Tests.Infrastructure.Data
+namespace AngryMailer.Tests.Domain.Services
 {
     [TestClass]
     public class AngerDetectionServiceTests
