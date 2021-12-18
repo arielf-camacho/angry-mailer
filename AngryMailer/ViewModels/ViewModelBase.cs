@@ -24,7 +24,6 @@ namespace AngryMailer.ViewModels
         /// <param name="propertyName">Name of the changed property's setter method.</param>
         protected void NotifyPropertyChanged([CallerMemberName] string? propertyName = null)
         {
-            var property = propertyName?[4..];
             var handlers = PropertyChanged;
 
             handlers?.Invoke(this, new PropertyChangedEventArgs(propertyName));
