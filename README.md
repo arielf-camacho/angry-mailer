@@ -51,6 +51,10 @@ The tests on the project were written using *MSTest* and they reside in the **An
 * If using Visual Studio, just open the *Test Explorer* panel and click the most top left button called `Run All Tests In View`, you will get a nicely formatted summary below in the same panel.
 * If on the terminal, standing on the solution folder, issue the command: `dotnet test` and the tests will execute. After the execution ends, the report will show up.
 
+### Changelog
+
+To keep track of the changes, additions and removals see the [Changelog](./CHANGELOG.md).
+
 ### License
 
 This product contains an MIT license, and it's intended for anyone to use it for any ends.
