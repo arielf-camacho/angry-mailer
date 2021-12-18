@@ -1,6 +1,7 @@
-﻿using System;
+﻿using AngryMailer.Domain.Services;
+using System;
 
-namespace AngryMailer.Infrastructure.Time
+namespace AngryMailer.Infrastructure
 {
     /// <summary>
     ///     Default implementation of <see cref="ITimeService"/> interface. See that interface's documentation for more details.
