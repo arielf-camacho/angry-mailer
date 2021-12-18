@@ -15,7 +15,9 @@ namespace AngryMailer.Tests.ViewModels
     {
         private static readonly Random _random = new(Environment.TickCount);
 
-        private Email _email;
+        private IAngerDetectionService _angerDetectionService;
+
+        private Email? _email;
         private SendMailCommand? _sendMailCommand;
 
         private SendMailViewModel? _subject;
@@ -24,11 +26,12 @@ namespace AngryMailer.Tests.ViewModels
         [TestInitialize]
         public void Initialize()
         {
-            _sendMailCommand = new SendMailCommand(
-                Substitute.For<IMailService>(), Substitute.For<IAngerDetectionService>());
+            _angerDetectionService = Substitute.For<IAngerDetectionService>();
+            _sendMailCommand = new SendMailCommand(Substitute.For<IMailService>(), _angerDetectionService);
 
             _email = new Email("some@mail.com", "Hello", "Hi friend");
-            _subject = new SendMailViewModel(_sendMailCommand)
+            
+            _subject = new SendMailViewModel(_sendMailCommand, _angerDetectionService)
             {
                 ToAddress = _email.ToAddress,
                 Subject = _email.Subject,
@@ -48,10 +51,11 @@ namespace AngryMailer.Tests.ViewModels
             // When
             _subject!.Content = newValue;
 
-            // When
+            // Then
             Assert.IsTrue(watcher.NotifiedChange);
             Assert.IsTrue(emailWatcher.NotifiedChange);
             Assert.AreEqual(newValue, _subject!.Content);
+            _angerDetectionService.Received().CountStroke();
         }
 
         [TestMethod]
@@ -124,10 +128,11 @@ namespace AngryMailer.Tests.ViewModels
             // When
             _subject!.Subject = newValue;
 
-            // When
+            // Then
             Assert.IsTrue(watcher.NotifiedChange);
             Assert.IsTrue(emailWatcher.NotifiedChange);
             Assert.AreEqual(newValue, _subject!.Subject);
+            _angerDetectionService.Received().CountStroke();
         }
 
         [TestMethod]
@@ -141,10 +146,11 @@ namespace AngryMailer.Tests.ViewModels
             // When
             _subject!.ToAddress = newValue;
 
-            // When
+            // Then
             Assert.IsTrue(watcher.NotifiedChange);
             Assert.IsTrue(emailWatcher.NotifiedChange);
             Assert.AreEqual(newValue, _subject!.ToAddress);
+            _angerDetectionService.Received().CountStroke();
         }
     }
 }

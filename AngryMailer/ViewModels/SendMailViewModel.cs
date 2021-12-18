@@ -1,4 +1,5 @@
 ﻿using AngryMailer.Domain.Entities;
+using AngryMailer.Domain.Services;
 using AngryMailer.ViewModels.Commands;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -14,8 +15,9 @@ namespace AngryMailer.ViewModels
         private string _subject = string.Empty;
         private string _content = string.Empty;
 
-        private SendMailCommand _sendMailCommand;
-
+        private readonly SendMailCommand _sendMailCommand;
+        private readonly IAngerDetectionService _angerDetectionService;
+        
         private Email _email;
 
 
@@ -25,11 +27,15 @@ namespace AngryMailer.ViewModels
         /// <param name="sendMailCommand">
         ///     Command that is used to send emails.
         /// </param>
-        public SendMailViewModel(SendMailCommand sendMailCommand)
+        /// <param name="angerDetectionService">
+        ///     Service used to detect whether the user is angry.
+        /// </param>
+        public SendMailViewModel(SendMailCommand sendMailCommand, IAngerDetectionService angerDetectionService)
         {
             _email = new Email(_to, _subject, _content);
 
             _sendMailCommand = sendMailCommand;
+            _angerDetectionService = angerDetectionService;
         }
 
 
@@ -52,8 +58,11 @@ namespace AngryMailer.ViewModels
 
                 _to = value;
                 _email = _email with { ToAddress = _to };
+                
                 NotifyPropertyChanged();
                 NotifyPropertyChanged(nameof(Email));
+
+                _angerDetectionService.CountStroke();
             }
         }
 
@@ -71,6 +80,8 @@ namespace AngryMailer.ViewModels
                 _email = _email with { Subject = _subject };
                 NotifyPropertyChanged();
                 NotifyPropertyChanged(nameof(Email));
+
+                _angerDetectionService.CountStroke();
             }
         }
 
@@ -88,6 +99,8 @@ namespace AngryMailer.ViewModels
                 _email = _email with { Content = _content };
                 NotifyPropertyChanged();
                 NotifyPropertyChanged(nameof(Email));
+
+                _angerDetectionService.CountStroke();
             }
         }
 
