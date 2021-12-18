@@ -1,5 +1,4 @@
-﻿using AngryMailer.Domain;
-using AngryMailer.Domain.Entities;
+﻿using AngryMailer.Domain.Entities;
 using AngryMailer.Domain.Services;
 using System;
 
@@ -10,19 +9,22 @@ namespace AngryMailer.ViewModels.Commands
     /// </summary>
     public class SendMailCommand : CommandBase
     {
-        private readonly IMailService _mailService;
         private readonly IAngerDetectionService _angerDetector;
+        private readonly IMailService _mailService;
+        private readonly IMessageService _messageService;
 
 
         /// <summary>
         ///     Initializes a new instance of <see cref="SendMailCommand"/> command given the mail service.
         /// </summary>
-        /// <param name="mailService">Service used to send emails.</param>
         /// <param name="angerDetector">Service used to determine whether the user is angry.</param>
-        public SendMailCommand(IMailService mailService, IAngerDetectionService angerDetector)
+        /// <param name="mailService">Service used to send emails.</param>
+        /// <param name="messageService">Used to show message (alerts, notifications) to the user.</param>
+        public SendMailCommand(IAngerDetectionService angerDetector, IMailService mailService, IMessageService messageService)
         {
             _angerDetector = angerDetector;
             _mailService = mailService;
+            _messageService = messageService;
         }
 
 
@@ -37,7 +39,7 @@ namespace AngryMailer.ViewModels.Commands
         /// </returns>
         public override bool CanExecute(object? parameter)
         {
-            return base.CanExecute(parameter) && parameter is Email email && email.IsValid && !_angerDetector.IsAngry;
+            return base.CanExecute(parameter) && parameter is Email email && email.IsValid;
         }
 
         /// <summary>
@@ -53,6 +55,12 @@ namespace AngryMailer.ViewModels.Commands
         /// </exception>
         public override void Execute(object? parameter)
         {
+            if (_angerDetector.IsUserAngry)
+            {
+                _messageService.ShowMessage("You in anger state. Please, try sending it again later when you are calmed");
+                return;
+            }
+
             if (parameter is Email email) _mailService.Send(email);
         }
     }
