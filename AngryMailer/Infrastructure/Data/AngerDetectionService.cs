@@ -26,8 +26,8 @@ namespace AngryMailer.Infrastructure.Data
         }
 
 
-        /// <inheritdoc cref="IAngerDetectionService.IsAngry"/>
-        public bool IsAngry => _timeService.Elapsed <= _angryThreshold;
+        /// <inheritdoc cref="IAngerDetectionService.IsUserAngry"/>
+        public bool IsUserAngry => _timeService.Elapsed <= _angryThreshold;
 
 
         /// <inheritdoc cref="IAngerDetectionService.CountStroke"/>

@@ -43,7 +43,7 @@ namespace AngryMailer.Tests.Infrastructure.Data
             }
 
             // Then
-            Assert.IsTrue(_subject!.IsAngry);
+            Assert.IsTrue(_subject!.IsUserAngry);
         }
 
         [TestMethod]
@@ -59,7 +59,7 @@ namespace AngryMailer.Tests.Infrastructure.Data
             }
 
             // Then
-            Assert.IsFalse(_subject!.IsAngry);
+            Assert.IsFalse(_subject!.IsUserAngry);
         }
     }
 }

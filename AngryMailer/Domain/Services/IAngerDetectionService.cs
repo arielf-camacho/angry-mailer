@@ -9,11 +9,11 @@
         /// <summary>
         ///     Gets a boolean expressing whether the user is angry or not.
         /// </summary>
-        bool IsAngry { get; }
+        bool IsUserAngry { get; }
 
 
         /// <summary>
-        ///     Counts a keystroke, and updates the <see cref="IsAngry"/> state.
+        ///     Counts a keystroke, and updates the <see cref="IsUserAngry"/> state.
         /// </summary>
         void CountStroke();
     }
