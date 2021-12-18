@@ -55,6 +55,10 @@ The tests on the project were written using *MSTest* and they reside in the **An
 
 To keep track of the changes, additions and removals see the [Changelog](./CHANGELOG.md).
 
+### Future enhancements
+
+- There will be changed the Fake implementation of the email sending service for a real one.
+
 ### License
 
 This product contains an MIT license, and it's intended for anyone to use it for any ends.
