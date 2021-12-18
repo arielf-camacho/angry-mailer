@@ -12,6 +12,10 @@ namespace AngryMailer.Infrastructure.Time
         /// </summary>
         TimeSpan Elapsed { get; }
 
+        /// <summary>
+        ///     Marks the current time as the next to take into account when comparing how long has elapsed next time 
+        ///     <see cref="Elapsed"/> is called.
+        /// </summary>
         void Mark();
     }
 }
