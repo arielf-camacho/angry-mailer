@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace AngryMailer.ViewModels
+namespace AngryMailer.ViewModels.Commands
 {
     /// <summary>
     ///     Defines the default implementation of a command as view models should provide them.

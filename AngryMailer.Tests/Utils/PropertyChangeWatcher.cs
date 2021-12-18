@@ -18,7 +18,7 @@ namespace AngryMailer.Tests.Utils
 
         private void EvaluatePropertyActuallyChanged(object? sender, PropertyChangedEventArgs e)
         {
-            NotifiedChange = e.PropertyName == _propertyName;
+            NotifiedChange |= e.PropertyName == _propertyName;
         }
     }
 }

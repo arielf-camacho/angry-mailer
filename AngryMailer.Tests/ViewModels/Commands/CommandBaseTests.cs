@@ -1,6 +1,5 @@
-﻿using AngryMailer.ViewModels;
+﻿using AngryMailer.ViewModels.Commands;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace AngryMailer.Tests.ViewModels
 {

@@ -55,7 +55,8 @@
         </TextBox>
 
         <Button x:Name="SendMailButton"
-                Command="{Binding SendEmailCommand, Mode=OneWay}"
+                Command="{Binding SendMailCommand, Mode=OneWay}"
+                CommandParameter="{Binding Email, Mode=OneWay}"
                 Content="Send"
                 Grid.Column="2" 
                 Grid.RowSpan="2"
