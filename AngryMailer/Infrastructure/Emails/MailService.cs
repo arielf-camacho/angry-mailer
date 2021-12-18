@@ -11,6 +11,7 @@ namespace AngryMailer.Domain
         /// <inheritdoc cref="IMailService.Send(Email)"/>
         public void Send(Email email)
         {
+            // Simulating the email is being sent.
             MessageBox.Show(email.ToString());
         }
     }
