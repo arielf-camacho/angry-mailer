@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AngryMailer.Infrastructure.Time
+namespace AngryMailer.Domain.Services
 {
     /// <summary>
     ///     A service used to mark time intervals elapsed.
