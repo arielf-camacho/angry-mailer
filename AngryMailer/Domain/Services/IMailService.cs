@@ -1,6 +1,6 @@
 ﻿using AngryMailer.Domain.Entities;
 
-namespace AngryMailer.Domain
+namespace AngryMailer.Domain.Services
 {
     /// <summary>
     ///     Represents an object that can send emails to recipients.
