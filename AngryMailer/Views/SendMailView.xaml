@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:AngryMailer.ViewModels"
+        xmlns:app="clr-namespace:AngryMailer"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=viewModels:SendMailViewModel}"
-        Title="Angry Mailer" Height="450" Width="800">
+        Title="Angry Mailer" Height="450" Width="800"
+        app:DependencyContainer.WireViewModel="True">
 
     <Grid>
         <Grid.ColumnDefinitions>
