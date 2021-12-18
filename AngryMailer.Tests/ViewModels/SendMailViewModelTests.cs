@@ -25,7 +25,12 @@ namespace AngryMailer.Tests.ViewModels
         {
             _mailService = Substitute.For<IMailService>();
 
-            _subject = new SendMailViewModel(_mailService);
+            _subject = new SendMailViewModel(_mailService)
+            {
+                ToAddress = "some@mail.com",
+                Subject = "Hello",
+                Content = "Hi friend"
+            };
         }
 
 
@@ -45,10 +50,59 @@ namespace AngryMailer.Tests.ViewModels
         }
 
         [TestMethod]
+        public void Error_EmailDataIsInvalid_ReturnsGenericValidationError()
+        {
+            // Given
+            _subject!.ToAddress = string.Empty;
+
+            // When
+            var validationError = _subject.Error;
+
+            // Then
+            Assert.AreEqual(validationError, "Email data is invalid");
+        }
+
+        [TestMethod]
+        public void Error_EmailDataIsValid_ReturnsEmptyString()
+        {
+            // When
+            var validationError = _subject!.Error;
+
+            // Then
+            Assert.AreEqual(string.Empty, validationError);
+        }
+
+        [TestMethod]
+        public void Indexer_GivenFieldIsInvalid_ReturnsSpecificFieldValidationError()
+        {
+            // Given
+            _subject!.ToAddress = string.Empty;
+
+            // When
+            var validationError = _subject[nameof(SendMailViewModel.ToAddress)];
+
+            // Then
+            Assert.AreEqual(validationError, $"'{nameof(SendMailViewModel.ToAddress)}' field must not be null or empty");
+        }
+
+        [TestMethod]
+        public void Indexer_GivenFieldIsInvalid_ReturnsEmptyString()
+        {
+            // Given
+            _subject!.ToAddress = string.Empty;
+
+            // When
+            var validationError = _subject.Error;
+
+            // Then
+            Assert.AreEqual("Email data is invalid", validationError);
+        }
+
+        [TestMethod]
         public void SendCommand_EmailIsNotValid_CannotBeExecuted()
         {
             // Given
-            _subject!.Subject = "Some subject";
+            _subject!.Subject = string.Empty;
 
             // When
             var canExecute = _subject!.SendEmailCommand.CanExecute(null);

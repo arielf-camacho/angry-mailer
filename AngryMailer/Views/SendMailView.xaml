@@ -26,9 +26,15 @@
             Grid.Column="1"
             HorizontalAlignment="Stretch" 
             Margin="4,8,4,4" 
-            Text="{Binding ToAddress, UpdateSourceTrigger=PropertyChanged}" 
             TextWrapping="Wrap"
-            VerticalAlignment="Top"/>
+            VerticalAlignment="Top">
+            <TextBox.Text>
+                <Binding Path="ToAddress" 
+                         UpdateSourceTrigger="PropertyChanged" 
+                         ValidatesOnDataErrors="True"
+                         ValidatesOnExceptions="True"/>
+            </TextBox.Text>
+        </TextBox>
 
         <Label Content="Subject:" HorizontalAlignment="Left" Margin="8,4,4,4" Grid.Row="1" VerticalAlignment="Top" Padding="0,0,0,0"/>
         <TextBox x:Name="SubjectTextBox" 
@@ -37,8 +43,14 @@
                  HorizontalAlignment="Stretch" 
                  Margin="4,4,4,4" 
                  TextWrapping="Wrap" 
-                 Text="{Binding Subject, UpdateSourceTrigger=PropertyChanged}" 
-                 VerticalAlignment="Top"/>
+                 VerticalAlignment="Top">
+            <TextBox.Text>
+                <Binding Path="Subject" 
+                         UpdateSourceTrigger="PropertyChanged" 
+                         ValidatesOnDataErrors="True"
+                         ValidatesOnExceptions="True"/>
+            </TextBox.Text>
+        </TextBox>
 
         <Button x:Name="SendMailButton"
                 Command="{Binding SendEmailCommand, Mode=OneWay}"
@@ -57,9 +69,15 @@
                  HorizontalAlignment="Stretch" 
                  Margin="4,4,8,8"
                  TextWrapping="Wrap" 
-                 Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}"
                  VerticalAlignment="Stretch" 
-                 VerticalScrollBarVisibility="Visible" />
+                 VerticalScrollBarVisibility="Visible">
+            <TextBox.Text>
+                <Binding Path="Content" 
+                         UpdateSourceTrigger="PropertyChanged" 
+                         ValidatesOnDataErrors="True"
+                         ValidatesOnExceptions="True"/>
+            </TextBox.Text>
+        </TextBox>
     </Grid>
 
 </Window>
