@@ -1,5 +1,8 @@
 ﻿using AngryMailer.Domain;
+using AngryMailer.Domain.Services;
+using AngryMailer.Infrastructure.Data;
 using AngryMailer.ViewModels;
+using AngryMailer.ViewModels.Commands;
 using Microsoft.Practices.Unity;
 using System.ComponentModel;
 using System.Windows;
@@ -46,6 +49,8 @@ namespace AngryMailer
         static DependencyContainer()
         {
             Container.RegisterType<IMailService, MailService>();
+            Container.RegisterType<IAngerDetectionService, AngerDetectionService>();
+            Container.RegisterType<SendMailCommand>();
             Container.RegisterType<SendMailViewModel>();
         }
 

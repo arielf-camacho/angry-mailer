@@ -1,6 +1,5 @@
-﻿using AngryMailer.Domain;
-using AngryMailer.Domain.Entities;
-using System;
+﻿using AngryMailer.Domain.Entities;
+using AngryMailer.ViewModels.Commands;
 using System.ComponentModel;
 using System.Windows.Input;
 
@@ -14,30 +13,32 @@ namespace AngryMailer.ViewModels
         private string _to = string.Empty;
         private string _subject = string.Empty;
         private string _content = string.Empty;
-        private Email _email;
 
-        private IMailService _mailSender;
+        private SendMailCommand _sendMailCommand;
+
+        private Email _email;
 
 
         /// <summary>
         ///     Initializes a new instance of <see cref="SendMailViewModel"/>.
         /// </summary>
-        /// <param name="mailSender">
-        ///     Used to send emails, given the data specified in the current view model.
+        /// <param name="sendMailCommand">
+        ///     Command that is used to send emails.
         /// </param>
-        public SendMailViewModel(IMailService mailSender)
+        public SendMailViewModel(SendMailCommand sendMailCommand)
         {
-            _mailSender = mailSender;
             _email = new Email(_to, _subject, _content);
 
-            SendEmailCommand = new Command(ExecuteSendMailCommand, CanSendEmailCommand);
+            _sendMailCommand = sendMailCommand;
         }
 
+
+        public Email Email => _email;
 
         /// <summary>
         ///     Gets the command used to Send emails.
         /// </summary>
-        public ICommand SendEmailCommand { get; }
+        public ICommand SendMailCommand => _sendMailCommand;
 
         /// <summary>
         ///     Gets or sets the email address to send the email to.
@@ -52,6 +53,7 @@ namespace AngryMailer.ViewModels
                 _to = value;
                 _email = _email with { ToAddress = _to };
                 NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(Email));
             }
         }
 
@@ -68,6 +70,7 @@ namespace AngryMailer.ViewModels
                 _subject = value;
                 _email = _email with { Subject = _subject };
                 NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(Email));
             }
         }
 
@@ -84,6 +87,7 @@ namespace AngryMailer.ViewModels
                 _content = value;
                 _email = _email with { Content = _content };
                 NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(Email));
             }
         }
 
@@ -101,9 +105,5 @@ namespace AngryMailer.ViewModels
         ///     <paramref name="columnName"/>; or empty string if property is valid.
         /// </returns>
         public string this[string columnName] => _email.Validate(columnName) ?? string.Empty;
-
-        private bool CanSendEmailCommand(object? arg) => _email.IsValid;
-
-        private void ExecuteSendMailCommand(object? obj) => _mailSender.Send(_email);
     }
 }
