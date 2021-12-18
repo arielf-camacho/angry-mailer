@@ -10,4 +10,4 @@ using System.Windows;
                                               // app, or any theme specific resource dictionaries)
 )]
 
-[assembly:InternalsVisibleTo("AngryMail.Tests")]
+[assembly: InternalsVisibleTo("AngryMail.Tests")]

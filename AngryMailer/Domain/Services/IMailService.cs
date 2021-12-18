@@ -1,5 +1,4 @@
 ﻿using AngryMailer.Domain.Entities;
-using System.Threading.Tasks;
 
 namespace AngryMailer.Domain
 {

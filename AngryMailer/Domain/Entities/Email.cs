@@ -14,8 +14,8 @@ namespace AngryMailer.Domain.Entities
     public record Email(string ToAddress, string Subject, string Content) : IValidatable
     {
         /// <inheritdoc cref="IValidatable.IsValid"/>
-        public bool IsValid => 
-            Validate(nameof(ToAddress)) is null && 
+        public bool IsValid =>
+            Validate(nameof(ToAddress)) is null &&
             Validate(nameof(Subject)) is null &&
             Validate(nameof(Content)) is null;
 

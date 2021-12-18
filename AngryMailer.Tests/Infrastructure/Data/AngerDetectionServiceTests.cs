@@ -13,7 +13,7 @@ namespace AngryMailer.Tests.Infrastructure.Data
 
         private AngerDetectionService? _subject;
 
-        
+
         [TestInitialize]
         public void Initialize()
         {

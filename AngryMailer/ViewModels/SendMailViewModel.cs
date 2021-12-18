@@ -17,7 +17,7 @@ namespace AngryMailer.ViewModels
 
         private readonly SendMailCommand _sendMailCommand;
         private readonly IAngerDetectionService _angerDetectionService;
-        
+
         private Email _email;
 
 
@@ -58,7 +58,7 @@ namespace AngryMailer.ViewModels
 
                 _to = value;
                 _email = _email with { ToAddress = _to };
-                
+
                 NotifyPropertyChanged();
                 NotifyPropertyChanged(nameof(Email));
 
