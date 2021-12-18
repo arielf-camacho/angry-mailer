@@ -5,6 +5,6 @@
     /// </summary>
     /// <param name="To">Email address to send the email to.</param>
     /// <param name="Subject">Subject for the recipient to glance the email's content.</param>
-    /// <param name="Body">Content to include in the email.</param>
-    public record Email(string To, string Subject, string Body);
+    /// <param name="Content">Content to include in the email.</param>
+    public record Email(string ToEmail, string Subject, string Content);
 }

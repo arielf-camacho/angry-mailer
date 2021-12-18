@@ -1,4 +1,5 @@
 ﻿using AngryMailer.Domain;
+using AngryMailer.Domain.Entities;
 using System;
 using System.Windows.Input;
 
@@ -82,8 +83,9 @@ namespace AngryMailer.ViewModels
 
         private void ExecuteSendCommand(object? obj)
         {
-            // TODO Implement
-            throw new NotImplementedException();
+            var email = new Email(ToEmail, Subject, Content);
+
+            _mailSender.Send(email);
         }
     }
 }

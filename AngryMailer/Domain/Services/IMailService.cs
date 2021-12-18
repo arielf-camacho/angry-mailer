@@ -12,9 +12,6 @@ namespace AngryMailer.Domain
         ///     Asychronously sends the given email.
         /// </summary>
         /// <param name="email">Email to send.</param>
-        /// <returns>
-        ///     A <see cref="Task"/> that eventually performs the action of sending the provided <paramref name="email"/>.
-        /// </returns>
-        Task Send(Email email);
+        void Send(Email email);
     }
 }
