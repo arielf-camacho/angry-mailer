@@ -1,4 +1,5 @@
 ﻿using AngryMailer.Domain.Services;
+using AngryMailer.Infrastructure.Time;
 using System;
 
 namespace AngryMailer.Infrastructure.Data
@@ -9,14 +10,27 @@ namespace AngryMailer.Infrastructure.Data
     /// </summary>
     public class AngerDetectionService : IAngerDetectionService
     {
+        private readonly TimeSpan _angryThreshold = TimeSpan.FromSeconds(400 / 60);
+
+        private readonly ITimeService _timeService;
+
+
+        /// <summary>
+        ///     Initializes a new instance of <see cref="AngerDetectionService"/> with a time service.
+        /// </summary>
+        /// <param name="timeService">Service used to measure time</param>
+        public AngerDetectionService(ITimeService timeService)
+        {
+            _timeService = timeService;
+            _timeService.Mark();
+        }
+
+
         /// <inheritdoc cref="IAngerDetectionService.IsAngry"/>
-        public bool IsAngry => throw new NotImplementedException();
+        public bool IsAngry => _timeService.Elapsed <= _angryThreshold;
 
 
         /// <inheritdoc cref="IAngerDetectionService.CountStroke"/>
-        public void CountStroke()
-        {
-            throw new NotImplementedException();
-        }
+        public void CountStroke() => _timeService.Mark();
     }
 }
