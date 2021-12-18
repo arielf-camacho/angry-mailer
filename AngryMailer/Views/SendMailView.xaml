@@ -57,7 +57,7 @@
                  HorizontalAlignment="Stretch" 
                  Margin="4,4,8,8"
                  TextWrapping="Wrap" 
-                 Text="TextBox"
+                 Text="{Binding Content}"
                  VerticalAlignment="Stretch" 
                  VerticalScrollBarVisibility="Visible" />
     </Grid>
